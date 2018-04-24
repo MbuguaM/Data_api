@@ -15,3 +15,8 @@ def documentaion():
 @main.route('/source')
 def source():
     return render_template('source.html')
+
+
+@main.route('/terms')
+def terms():
+    return render_template('terms.html')
