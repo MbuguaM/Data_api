@@ -1,0 +1,24 @@
+{% extends 'base.html'%} {% import 'macros.html' as macro%}
+
+<!-- Styles block -->
+{% block styles%} {{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"> {% endblock %}
+
+<!-- Content block -->
+{% block content %}
+
+<div class="container">
+  <div class="jumbotron text-center" id="banner">
+    <h1>Kensus API</h1>
+    <h2>Access Kenya's Census Data with code</h2>
+    <p>
+      The census ensures that each community gets the right number of representatives in government.
+      <br> Since representation is based on population, an up-to-date tally is essential.
+    </p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Get API key</a></p>
+  </div>
+
+</div>
+
+
+{% endblock%}
