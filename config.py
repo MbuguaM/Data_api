@@ -9,6 +9,9 @@ class Config:
     WTF_CSRF_SECRET_KEY = os.environ.get('WTF_CSRF_SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_SITE_KEY')
+    RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_SECRET_KEY')
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
     # email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -32,7 +35,7 @@ class ProdConfig(Config):
 
 
 class TestConfig(Config):
-    # SQLALCHEMY_DATABASE_URI = os.environ.get("TEST_DATABASE_URL")
+    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://sami_mai:SmaiDB@localhost/kensus-test'
     pass
 
 
@@ -43,7 +46,7 @@ class DevConfig(Config):
     Args:
     Config: The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://sami_mai:SmaiDB@localhost/kensus'
     DEBUG = True
 
 
