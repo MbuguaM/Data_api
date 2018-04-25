@@ -18,12 +18,11 @@
         <li><a href="/source">Sources</a></li>
 
         {% if current_user.is_authenticated %}
-        <li><a href="#">{{current_user.username}}</a></li>
-        <!-- <li><a href="{{url_for('main.profile',uname=current_user.username)}}">{{current_user.username}}'s Dashboard</a></li> -->
-        <li><a href="#">Sign out</a></li>
+        <li><a href="{{url_for('main.index',uname=current_user.username)}}">{{current_user.name | capitalize}}'s Dashboard</a></li>
+        <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
         {% else %}
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Get API key</a></li>
+        <li><a href="{{url_for('auth.login')}}">Login</a></li>
+        <li><a href="{{url_for('auth.register')}}">Get API key</a></li>
         {%endif%}
       </ul>
     </div>
