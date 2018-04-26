@@ -22,12 +22,9 @@ def Authentication():
 def clientlib():
     return render_template('docs/clientlib.html')
 
-<<<<<<< HEAD
 @main.route('/activities',methods = ['Get'])
 def test_activities():
     return jsonify({"activities" : loaded_activities})
-=======
->>>>>>> fbf95d17cd7fabb6d350d30226f95469cb69ef32
 
 @main.route('/endpoints')
 def endpoints():
@@ -43,21 +40,15 @@ def errors():
 def source():
     return render_template('source.html')
 
-<<<<<<< HEAD
 @main.route('/population',methods = ['Get'])
 def test_population():
     return jsonify({"activities" : loaded_population})
-=======
->>>>>>> fbf95d17cd7fabb6d350d30226f95469cb69ef32
 
 @main.route('/terms')
 def terms():
     return render_template('terms.html')
-<<<<<<< HEAD
-=======
 
 
 @main.route('/pricing')
 def pricing():
     return render_template('pricing.html')
->>>>>>> fbf95d17cd7fabb6d350d30226f95469cb69ef32

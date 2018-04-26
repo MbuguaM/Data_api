@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from flask import render_template, redirect, url_for, request, flash
 from . import auth
 from flask_login import login_user, logout_user, login_required
@@ -54,4 +52,3 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("main.index"))
->>>>>>> fbf95d17cd7fabb6d350d30226f95469cb69ef32
