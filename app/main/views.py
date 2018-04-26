@@ -5,7 +5,8 @@ import json
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    title = "Kensus API"
+    return render_template('index.html', title=title)
 
 
 @main.route('/docs')
