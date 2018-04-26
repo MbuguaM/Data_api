@@ -2,6 +2,12 @@ from . import main
 from flask import render_template, jsonify, request
 import json
 
+parsed_activities = open('app/data/parsed_activity.json','r')
+parsed_population = open('app/data/parsed_population.json','r')
+
+loaded_activities = json.load(parsed_activities)
+loaded_population = json.load(parsed_population)
+
 
 @main.route('/')
 def index():
@@ -22,7 +28,7 @@ def Authentication():
 def clientlib():
     return render_template('docs/clientlib.html')
 
-@main.route('/activities',methods = ['Get'])
+@main.route('/activities',methods = ['GET'])
 def test_activities():
     return jsonify({"activities" : loaded_activities})
 
@@ -42,7 +48,7 @@ def source():
 
 @main.route('/population',methods = ['Get'])
 def test_population():
-    return jsonify({"activities" : loaded_population})
+    return jsonify({"Population" : loaded_population})
 
 @main.route('/terms')
 def terms():
