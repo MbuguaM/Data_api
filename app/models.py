@@ -10,6 +10,7 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(255))
     email = db.Column(db.String(255), unique=True, index=True)
     password_hash = db.Column(db.String(255))
+    api_key = db.relationship('API_Key', backref='user', lazy="dynamic", uselist=False)
 
     @property
     def password(self):
@@ -27,4 +28,15 @@ class User(UserMixin, db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'User {self.username}'
+        return f'User {self.name}'
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
+
+class API_Key(db.Model):
+    __tablename__ = 'apikeys'
+    id = db.Column(db.Integer, primary_key=True)
+    api_key = db.Column(db.String(255), unique=True, index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
