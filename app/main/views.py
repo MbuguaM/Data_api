@@ -23,6 +23,9 @@ def Authentication():
 def clientlib():
     return render_template('docs/clientlib.html')
 
+@main.route('/activities',methods = ['Get'])
+def test_activities():
+    return jsonify({"activities" : loaded_activities})
 
 @main.route('/endpoints')
 def endpoints():
@@ -38,6 +41,9 @@ def errors():
 def source():
     return render_template('source.html')
 
+@main.route('/population',methods = ['Get'])
+def test_population():
+    return jsonify({"activities" : loaded_population})
 
 @main.route('/terms')
 def terms():
