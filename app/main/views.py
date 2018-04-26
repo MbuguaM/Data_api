@@ -31,7 +31,6 @@ def documentaion():
 def source():
     return render_template('source.html')
 
-<<<<<<< HEAD
 @main.route('/activities',methods = ['Get'])
 def test_activities():
     return jsonify({"activities" : loaded_activities})
@@ -51,9 +50,7 @@ def test_materials():
 @main.route('/population',methods = ['Get'])
 def test_population():
     return jsonify({"activities" : loaded_population})
-=======
 
 @main.route('/terms')
 def terms():
     return render_template('terms.html')
->>>>>>> b7108de50bb03c242326f841ddca9f21113db431
