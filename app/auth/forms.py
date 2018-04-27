@@ -10,7 +10,7 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email ', validators=[Required(), Email(), Length(min=6, max=50)])
     password = PasswordField('Password', validators=[Required(), EqualTo('password_confirm', message='Passwords must match'), Length(min=6, max=255)])
     password_confirm = PasswordField('Confirm Passwords', validators=[Required()])
-    recaptcha = RecaptchaField()
+    # recaptcha = RecaptchaField()
     terms = BooleanField('I agree to the terms.', validators=[Required()])
     attribution = BooleanField('I promise to add an attribution link on my website or app to kensusapi.herokuapp.com.', validators=[Required()])
     submit = SubmitField('Submit')
