@@ -47,7 +47,8 @@ def endpoints():
 
 @main.route('/pricing')
 def pricing():
-    return render_template('pricing.html')
+    title = "Pricing"
+    return render_template('pricing.html', title=title)
 
 
 @main.route('/errors')
@@ -64,7 +65,8 @@ def source():
 
 @main.route('/terms')
 def terms():
-    return render_template('terms.html')
+    title = "Terms of Service"
+    return render_template('terms.html', title=title)
 
 
 # api endpoints

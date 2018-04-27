@@ -3,7 +3,34 @@
 {% block content %}
 
 <div class="container text-center">
-  <h3>Pricing</h3>
-
+  <h2>Pricing</h2>
+  <p>Free for development! Options for commercial use coming soon.</p>
 </div>
-{% endblock %}
+<div class="container">
+  <div class="">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        Basic panel example
+      </div>
+    </div>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+      <div class="panel panel-success">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Start-Up / Commercial
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            Coming soon!
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    {% endblock %}
