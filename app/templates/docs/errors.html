@@ -1,8 +1,42 @@
 {% extends 'docs/docs-base.html' %} {% block content %}
 
 <div class="container">
-  <h1>Errors</h1>
-
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <h2>Errors</h2>
+      <p>
+        If you make a bad request we'll let you know by returning a relevant HTTP status code along with more details in the body.
+      </p>
+      <p><strong>HTTP status codes summary</strong></p>
+      <ul>
+        <li>200 - OK. The request was executed successfully.</li>
+        <li>400 - Bad Request. The request was unacceptable, often due to a missing or misconfigured parameter.</li>
+        <li>401 - Unauthorized. Your API key was missing from the request, or wasn't correct.</li>
+        <li>429 - Too Many Requests. You made too many requests within a window of time and have been rate limited. Back off for a while.</li>
+        <li>500 - Server Error. Something went wrong on our side.</li>
+      </ul>
+      <p><strong>Error codes</strong></p>
+      <p>
+        When an HTTP error is returned we populate the code and message properties in the response containing more information. Here are the possible options:
+      </p>
+      <ul>
+        <li>apiKeyDisabled - Your API key has been disabled.</li>
+        <li>apiKeyExhausted - Your API key has no more requests available.</li>
+        <li>apiKeyInvalid - Your API key hasn't been entered correctly. Double check it and try again.</li>
+        <li>apiKeyMissing - Your API key is missing from the request. Append it to the request with <a href="/auth" target="_blank">one of these methods</a>.</li>
+        <li>parameterInvalid - You've included a parameter in your request which is currently not supported. Check the message property for more details.</li>
+        <li>parametersMissing - Required parameters are missing from the request and it cannot be completed. Check the message property for more details.</li>
+        <li>rateLimited - You have been rate limited. Back off for a while before trying the request again.</li>
+        <li>sourcesTooMany - You have requested too many sources in a single request. Try splitting the request into 2 smaller requests.</li>
+        <li>sourceDoesNotExist - You have requested a source which does not exist.</li>
+        <li>unexpectedError - This shouldn't happen, and if it does then it's our fault, not yours. Try the request again shortly.</li>
+      </ul>
+      <br>
+      <hr>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
 </div>
 <div class="container">
   <div class="row">
@@ -18,5 +52,11 @@
   </div>
 
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 {% endblock %}

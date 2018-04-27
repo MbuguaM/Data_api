@@ -1,29 +1,38 @@
 {% extends 'docs/docs-base.html' %} {% block content %}
 
 <div class="container">
-  <h2>Authentication</h2>
-  <br>
-  <p>Authentication is handled with a simple API key.</p>
-  <!-- <br> -->
-  <p>
-    They're free for development, open-source, and non-commercial use, and you can get one here: <a href="{{url_for('auth.register')}}">get API key</a> .
-  </p>
-  <p>
-    You can attach your API key to a request in one of three ways:
-  </p>
-  <ul>
-    <li>Via the apiKey querystring parameter.</li>
-    <li>Via the X-Api-Key HTTP header.</li>
-    <li>Via the Authorization HTTP header. Bearer optional, do not base 64 encode.</li>
-  </ul>
-  <p>
-    We strongly recommend the either of latter 2 so that your API key isn't visible to others in logs or request sniffing.
-  </p>
-  <p>
-    If you don't append your API key correctly, or your API key is invalid, you will receive a 401 - Unauthorized HTTP error.
-  </p>
-  <br>
-  <hr>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <h2>Authentication</h2>
+      <br>
+      <p>Authentication is handled with a simple API key.</p>
+      <!-- <br> -->
+      <p>
+        They're free for development, open-source, and non-commercial use, and you can get one here: <a href="{{url_for('auth.register')}}">get API key</a> .
+      </p>
+      <p>
+        You can attach your API key to a request in one of three ways:
+      </p>
+      <ul>
+        <li>Via the apiKey querystring parameter.</li>
+        <li>Via the X-Api-Key HTTP header.</li>
+        <li>Via the Authorization HTTP header. Bearer optional, do not base 64 encode.</li>
+      </ul>
+      <p>
+        We strongly recommend the either of latter 2 so that your API key isn't visible to others in logs or request sniffing.
+      </p>
+      <p>
+        If you don't append your API key correctly, or your API key is invalid, you will receive a 401 - Unauthorized HTTP error.
+      </p>
+      <br>
+      <hr>
+    </div>
+    <div class="col-md-1"></div>
+
+  </div>
+
+
 
 </div>
 <div class="container">

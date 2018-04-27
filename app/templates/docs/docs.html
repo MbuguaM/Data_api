@@ -1,33 +1,41 @@
 {% extends 'docs/docs-base.html' %} {% block content %}
 
 <div class="container">
-  <h2>Documentation</h2>
-  <p>
-    Kensus API is a simple HTTP REST API for searching and retrieving live Kenyan census data. It can help you answer questions like:
-  </p>
-  <ul>
-    <li>Population</li>
-    <li>Internet usage</li>
-    <li>Land areas</li>
-    <li>Activities/Occupation</li>
-  </ul>
-  <p>
-    You can search for articles with any combination of the following criteria:
-  </p>
-  <ul>
-    <li></li>
-  </ul>
-  <p>
-    You can search for articles with any combination of the following criteria:
-  </p>
-  <ul>
-    <li></li>
-  </ul>
-  <p>
-    You need an API key to use the API - this is a unique key that identifies your requests. They're free for development, open-source, and non-commercial use. You can get one here: <a href="{{url_for('auth.register')}}">get API key</a>.
-  </p>
-  <br>
-  <hr>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <h2>Documentation</h2>
+      <p>
+        Kensus API is a simple HTTP REST API for searching and retrieving live Kenyan census data. It can help you answer questions like:
+      </p>
+      <ul>
+        <li>Population</li>
+        <li>Internet usage</li>
+        <li>Land areas</li>
+        <li>Activities/Occupation</li>
+      </ul>
+      <p>
+        You can search for articles with any combination of the following criteria:
+      </p>
+      <ul>
+        <li></li>
+      </ul>
+      <p>
+        You can search for articles with any combination of the following criteria:
+      </p>
+      <ul>
+        <li></li>
+      </ul>
+      <p>
+        You need an API key to use the API - this is a unique key that identifies your requests. They're free for development, open-source, and non-commercial use. You can get one here: <a href="{{url_for('auth.register')}}">get API key</a>.
+      </p>
+      <br>
+      <hr>
+    </div>
+    <div class="col-md-1"></div>
+
+  </div>
+
 </div>
 <div class="container">
   <div class="row">
