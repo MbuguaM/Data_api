@@ -7,10 +7,11 @@ from . import login_manager
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
+    public_uid = db.Column(db.String(255),unique=True)
     name = db.Column(db.String(255))
     email = db.Column(db.String(255), unique=True, index=True)
     password_hash = db.Column(db.String(255))
-    api_key = db.relationship('API_Key', backref='user', lazy="dynamic", uselist=False)
+    api_key = db.relationship('API_Key', backref='user', lazy="dynamic")  # ,uselist=False)
 
     @property
     def password(self):

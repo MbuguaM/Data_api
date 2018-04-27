@@ -4,7 +4,6 @@ from app import create_app, db
 from app.models import User, API_Key
 
 
-
 # Creating app instance
 app = create_app('development')
 # app = create_app('test')
