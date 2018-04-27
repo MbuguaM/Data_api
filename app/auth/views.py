@@ -96,7 +96,7 @@ def logout():
 # api endpoints
 # all the infomation
 @auth.route('/Everything', methods=['GET'])
-@token_required
+# @token_required
 def test_activities():
     everything = [{"Activities/Occupation": loaded_activities}, {'Population': loaded_population}, {'Areas': loaded_areas}, {'Internet_usage': loaded_internet}, {'Roof_materials': loaded_internet}]
     return jsonify({'all': everything})
@@ -104,7 +104,7 @@ def test_activities():
 
 # information based on category
 @auth.route('/Everything/<name>', methods=['GET'])
-@token_required
+# @token_required
 def activities(name):
     everything = [{'key': "activities", 'Activities/Occupation': loaded_activities}, {'key': 'population', 'Population': loaded_population}, {'key': 'areas', 'Area': loaded_areas}, {'key': 'internet', 'internet_usage': loaded_internet}, {'key': 'materials', 'Roof_materials': loaded_materials}]
 
@@ -116,7 +116,7 @@ def activities(name):
 
 # infomation based  on county info
 @auth.route('/County/<name>', methods=['GET'])
-@token_required
+# @token_required
 def county_info(name):
     def get_all():
         dicts = []
