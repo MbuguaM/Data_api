@@ -17,27 +17,32 @@ loaded_internet = json.load(parsed_internet)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    title = "Kensus API"
+    return render_template('index.html', title=title)
 
 
 @main.route('/docs')
 def documentation():
-    return render_template('docs/docs.html')
+    title = "Documentation"
+    return render_template('docs/docs.html', title=title)
 
 @main.route('/auth')
 def Authentication():
-    return render_template('docs/auth.html')
+    title = "Authentication"
+    return render_template('docs/auth.html', title=title)
 
 
 @main.route('/clientlib')
 def clientlib():
-    return render_template('docs/clientlib.html')
+    title = "Client Libraries"
+    return render_template('docs/clientlib.html', title=title)
 
 
 
 @main.route('/endpoints')
 def endpoints():
-    return render_template('docs/endpoints.html')
+    title = "Endpoints"
+    return render_template('docs/endpoints.html', title=title)
 
 
 @main.route('/pricing')
@@ -46,12 +51,14 @@ def pricing():
 
 @main.route('/errors')
 def errors():
-    return render_template('docs/errors.html')
+    title = "Error"
+    return render_template('docs/errors.html', title=title)
 
 
 @main.route('/source')
 def source():
-    return render_template('source.html')
+    title = "Sources"
+    return render_template('source.html', title=title)
 
 @main.route('/terms')
 def terms():
