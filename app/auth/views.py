@@ -34,12 +34,12 @@ def token_required(f):
             token = request.args['api-access-token']
         if not token:
             return jsonify({'message': 'token is missing'}), 401
-        try:
-            data = jwt.decode(token, Config['ENCODE_KEY'])
-            current_user = User.query.filter_by(public_uid=data['public_uid']).first()
-        except:
-            return jsonify({'message', 'token if invalid'}), 401
-        return f(current_user, *args, **kwargs)
+        # try:
+        #     data = jwt.decode(token, Config['ENCODE_KEY'])
+        #     current_user = User.query.filter_by(public_uid=data['public_uid']).first()
+        # except:
+        #     return jsonify({'message', 'token is invalid'}), 401
+        return f(token, *args, **kwargs)
     return decorated
 
 
@@ -76,9 +76,9 @@ def login():
         user = User.query.filter_by(email=login_form.email.data).first()
         if user is not None and user.verify_password(login_form.password.data):
             login_user(user, login_form.remember.data)
-            token = jwt.encode({'public_uid': user.public_uid, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=600)}, Config['ENCODE_KEY'])
-            Token = token.decode('UTF-8')
-            return redirect(url_for('auth.success', Token=Token))
+            # token = jwt.encode({'public_uid': user.public_uid, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=600)}, Config['ENCODE_KEY'])
+            # Token = token.decode('UTF-8')
+            return redirect(url_for('auth.success'))  #, Token=Token))
 
         flash('Invalid Email or Password')
 
@@ -96,53 +96,63 @@ def logout():
 # api endpoints
 # all the infomation
 @auth.route('/Everything', methods=['GET'])
-# @token_required
-def test_activities():
-    everything = [{"Activities/Occupation": loaded_activities}, {'Population': loaded_population}, {'Areas': loaded_areas}, {'Internet_usage': loaded_internet}, {'Roof_materials': loaded_internet}]
-    return jsonify({'all': everything})
+@token_required
+def test_activities(token):
+    if  token:
+        everything = [{"Activities/Occupation": loaded_activities}, {'Population': loaded_population}, {'Areas': loaded_areas}, {'Internet_usage': loaded_internet}, {'Roof_materials': loaded_internet}]
+        return jsonify({'all': everything})
+    else:
+        return jsonify({'message': 'no token'})
 
 
 # information based on category
 @auth.route('/Everything/<name>', methods=['GET'])
-# @token_required
-def activities(name):
-    everything = [{'key': "activities", 'Activities/Occupation': loaded_activities}, {'key': 'population', 'Population': loaded_population}, {'key': 'areas', 'Area': loaded_areas}, {'key': 'internet', 'internet_usage': loaded_internet}, {'key': 'materials', 'Roof_materials': loaded_materials}]
+@token_required
+def activities(token,name):
+    if token:
+        everything = [{'key': "activities", 'Activities/Occupation': loaded_activities}, {'key': 'population', 'Population': loaded_population}, {'key': 'areas', 'Area': loaded_areas}, {'key': 'internet', 'internet_usage': loaded_internet}, {'key': 'materials', 'Roof_materials': loaded_materials}]
 
-    for detail in everything:
-        if detail.get('key') == name:
-            return jsonify(detail)
-    return jsonify({'message': 'bad requests'})
+        for detail in everything:
+            if detail.get('key') == name:
+                return jsonify(detail)
+        return jsonify({'message': 'bad requests'})
+    else:
+        return jsonify({'message': 'no token'})
+
 
 
 # infomation based  on county info
 @auth.route('/County/<name>', methods=['GET'])
-# @token_required
-def county_info(name):
-    def get_all():
-        dicts = []
-        # activities
-        for detail in loaded_activities:
-            if detail.get('county') == name:
-                dicts.append({"Activities/Occupation": detail})
-        # loaded_population
-        for detail2 in loaded_population:
-            if detail2.get('county') == name:
-                dicts.append({'Population': detail2})
-        # areas
-        for detail3 in loaded_areas:
-            if detail3.get('county') == name:
-                dicts.append({'Area': detail3})
-        # internet
-        for detail4 in loaded_internet:
-            if detail4.get('county') == name:
-                dicts.append({'Internet_usage': detail4})
-        # roof loaded_materials
-        for detail5 in loaded_materials:
-            if detail5.get('county') == name:
-                dicts.append({'Roof_materials': detail5})
-        return dicts
-    all = get_all()
-    if all is not None:
-        return jsonify({"info": all})
+@token_required
+def county_info(token,name):
+    if token:
+        def get_all():
+            dicts = []
+            # activities
+            for detail in loaded_activities:
+                if detail.get('county') == name:
+                    dicts.append({"Activities/Occupation": detail})
+            # loaded_population
+            for detail2 in loaded_population:
+                if detail2.get('county') == name:
+                    dicts.append({'Population': detail2})
+            # areas
+            for detail3 in loaded_areas:
+                if detail3.get('county') == name:
+                    dicts.append({'Area': detail3})
+            # internet
+            for detail4 in loaded_internet:
+                if detail4.get('county') == name:
+                    dicts.append({'Internet_usage': detail4})
+            # roof loaded_materials
+            for detail5 in loaded_materials:
+                if detail5.get('county') == name:
+                    dicts.append({'Roof_materials': detail5})
+            return dicts
+        all = get_all()
+        if all is not None:
+            return jsonify({"info": all})
 
-    return jsonify({'message': 'bad requests'})
+        return jsonify({'message': 'bad requests'})
+    else:
+        return jsonify({'message': 'no token'})
